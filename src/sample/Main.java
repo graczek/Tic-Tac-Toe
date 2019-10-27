@@ -5,13 +5,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import static sample.Field.BOARD_SIZE;
 
 public class Main extends Application {
 
     public static Pane grid = new Pane();
 
     private Parent createSetup() {
-        grid.setPrefSize(450, 450);
+        grid.setPrefSize(BOARD_SIZE, BOARD_SIZE);
         Field.drawBoard();
         return grid;
     }

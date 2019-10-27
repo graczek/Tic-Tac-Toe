@@ -1,35 +1,44 @@
 package sample;
 
 import javafx.geometry.Pos;
-import javafx.scene.input.MouseButton;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class Field extends StackPane {
 
+    public static final int  BOARD_SIZE = 450;
+
     private Text sign = new Text();
+
+    private boolean turnX = true;
 
     private Field() {
 
-        Rectangle field = new Rectangle(150, 150);
+        Rectangle field = new Rectangle(BOARD_SIZE/3, BOARD_SIZE/3);
         field.setFill(null);
         field.setStroke(Color.BLACK);
+
+        sign.setFont(Font.font(BOARD_SIZE/4));
 
         setAlignment(Pos.CENTER);
         getChildren().addAll(field, sign);
 
+        addMouseListener();
+    }
+
+    private void addMouseListener() {
         setOnMouseClicked(e -> {
-            if(e.getButton() == MouseButton.PRIMARY) {
+            if(turnX){
                 drawX();
-            } else if(e.getButton() == MouseButton.SECONDARY) {
+
+            } else {
                 drawO();
+                turnX = true;
             }
         });
-
-
-
     }
 
     private void drawX() {
