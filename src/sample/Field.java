@@ -33,6 +33,8 @@ public class Field extends StackPane {
         setOnMouseClicked(e -> {
             if(turnX){
                 drawX();
+                turnX = false;
+                System.out.println(turnX);
 
             } else {
                 drawO();
