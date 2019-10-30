@@ -23,6 +23,8 @@ public class Main extends Application {
 
     private boolean isMoveX = true;
     private boolean keepPlaying = true;
+    private boolean occupied = false;
+    private boolean isWinner = false;
 
     private Field[][] board = new Field[3][3];
 
@@ -90,7 +92,8 @@ public class Main extends Application {
         for (WinningCombination winningCombination : winningCombinationsList) {
             if(winningCombination.isWinningCombinationComplete()) {
                 keepPlaying = false;
-                displayWinner();
+                isWinner = true;
+                displayWinner(isWinner);
                 break;
             }
 
@@ -98,7 +101,20 @@ public class Main extends Application {
 
     }
 
-    private void displayWinner() {
+    private void checkIfDraw() {
+        WinningCombination winningCombination = new WinningCombination();
+        int fieldsLength = winningCombination.fields.length;
+        if (fieldsLength >= 3 && !playerWon() && allFieldsFilled()) {
+            isWinner = false;
+        }
+    }
+
+    boolean playerWon() {
+        return winningCombinationsList.stream().anyMatch(WinningCombination::isWinningCombinationComplete);
+    }
+
+    private void displayWinner(boolean isWinner) {
+
         Stage popup = new Stage();
         popup.initModality(Modality.APPLICATION_MODAL);
         popup.setResizable(false);
@@ -106,7 +122,7 @@ public class Main extends Application {
         popup.setMinWidth(150);
 
         Label label = new Label();
-        label.setText("We got the winner!");
+        label.setText(isWinner ? "We got the winner!" : "Draw!");
 
         Button closeButton = new Button("Close");
         closeButton.setOnAction(e -> popup.close());
@@ -131,11 +147,17 @@ public class Main extends Application {
 
         keepPlaying = true;
         isMoveX = true;
+        occupied = false;
+        isWinner = false;
         window.close();
     }
 
-    private class WinningCombination {
+    private static class WinningCombination {
         private Field[] fields;
+
+        public Field[] getFields() {
+            return fields;
+        }
 
         public WinningCombination(Field... fields) {
             this.fields = fields;
@@ -153,7 +175,6 @@ public class Main extends Application {
     private class Field extends StackPane {
 
         private Text text = new Text();
-        private boolean occupied = false;
 
         public Field() {
             Rectangle rectangle = new Rectangle(WINDOW_SIZE/3, WINDOW_SIZE/3);
@@ -163,7 +184,7 @@ public class Main extends Application {
             setAlignment(Pos.CENTER);
             getChildren().addAll(rectangle, text);
 
-            text.setFont(Font.font(100));
+            text.setFont(Font.font(WINDOW_SIZE/4));
             text.setFill(Color.GREEN);
 
             addMouseListener();
@@ -184,6 +205,7 @@ public class Main extends Application {
                     isMoveX = true;
                 }
                 occupied = false;
+                checkIfDraw();
                 checkIfWinner();
             });
         }
@@ -199,6 +221,17 @@ public class Main extends Application {
         private void drawO(){
             text.setText("O");
         }
+    }
+
+    private boolean allFieldsFilled() {
+        for (int x = 0; x < 3; x++) {
+            for (int y = 0; y < 3; y++) {
+                if (board[x][y] == null) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
 
