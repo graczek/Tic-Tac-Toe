@@ -12,7 +12,7 @@ import sample.MouseListener;
 
 public class ViewMain {
 
-    private static final Image BACKGROUND = new Image("file:/resources/backg.jpg");
+    private static final Image BACKGROUND = new Image("backg.jpg");
     private static final int WINDOW_SIZE = 450;
 
     private final Pane grid;
@@ -28,8 +28,8 @@ public class ViewMain {
         grid.setPrefSize(WINDOW_SIZE, WINDOW_SIZE);
         grid.setBackground(createBackground());
 
-        for (int y = 0; y < 3; y++) {
-            for (int x = 0; x < 3 ; x++) {
+        for (int x = 0; x < 3; x++) {
+            for (int y = 0; y < 3 ; y++) {
                 FieldPane fieldPane = new FieldPane(WINDOW_SIZE);
                 fieldPane.setTranslateX(x * WINDOW_SIZE/3);
                 fieldPane.setTranslateY(y * WINDOW_SIZE/3);
@@ -86,7 +86,8 @@ public class ViewMain {
     private Background createBackground() {
         BackgroundSize backgroundSize = new BackgroundSize(800, 800, true, true, true, false);
         BackgroundImage backgroundImage = new BackgroundImage(BACKGROUND, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
-        return new Background(backgroundImage);
+        Background background = new Background(backgroundImage);
+        return background;
     }
 
 
