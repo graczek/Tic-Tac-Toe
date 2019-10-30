@@ -1,5 +1,7 @@
 package sample;
 
+import sample.enums.FieldState;
+
 class Field {
 
     private FieldState fieldState;
