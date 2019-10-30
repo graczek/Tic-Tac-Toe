@@ -1,6 +1,6 @@
-package sample;
+package com.graczek.tictactoe.game;
 
-import enums.FieldState;
+import com.graczek.tictactoe.enums.FieldState;
 
 public class FieldStateHolder {
 

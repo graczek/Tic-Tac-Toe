@@ -1,7 +1,8 @@
-package sample;
+package com.graczek.tictactoe.game;
 
+import com.graczek.tictactoe.view.EndGamePopUp;
 import javafx.application.Platform;
-import view.ViewMain;
+import com.graczek.tictactoe.view.ViewMain;
 
 public class Game implements GameStateListener {
 
@@ -10,6 +11,8 @@ public class Game implements GameStateListener {
     private final ViewMain viewMain;
     private final Board board;
     private final WinnerChecker winnerChecker;
+
+    private EndGamePopUp endGamePopUp = new EndGamePopUp();
 
     public Game(ViewMain viewMain) {
         this.viewMain = viewMain;
@@ -30,13 +33,12 @@ public class Game implements GameStateListener {
         }
     }
 
-
     @Override
     public void gameStateChanged() {
         if(winnerChecker.playerWon()) {
-            Platform.runLater(() -> viewMain.displayEndGamePopUpWindow(true, this::resetGame));
+            Platform.runLater(() -> endGamePopUp.displayEndGamePopUpWindow(true, this::resetGame));
         } else if (allFieldsFilled()) {
-            Platform.runLater(() -> viewMain.displayEndGamePopUpWindow(false, this::resetGame));
+            Platform.runLater(() -> endGamePopUp.displayEndGamePopUpWindow(false, this::resetGame));
         }
 
     }

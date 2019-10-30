@@ -1,10 +1,10 @@
-package sample;
+package com.graczek.tictactoe.game;
 
-import enums.FieldState;
+import com.graczek.tictactoe.enums.FieldState;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
-import view.FieldPane;
+import com.graczek.tictactoe.view.FieldPane;
 
 public class MouseListener implements EventHandler<MouseEvent> {
 

@@ -1,6 +1,6 @@
-package view;
+package com.graczek.tictactoe.view;
 
-import enums.FieldState;
+import com.graczek.tictactoe.enums.FieldState;
 import javafx.geometry.Pos;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;

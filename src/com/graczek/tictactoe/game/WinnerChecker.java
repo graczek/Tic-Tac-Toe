@@ -1,6 +1,6 @@
-package sample;
+package com.graczek.tictactoe.game;
 
-import enums.FieldState;
+import com.graczek.tictactoe.enums.FieldState;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +47,6 @@ public class WinnerChecker {
             if(fields[0].getFieldState() == null) {
                 return false;
             }
-            FieldState state = fields[0].getFieldState();
             FieldState stateToCheck = fields[0].getFieldState();
             return isStateSame(stateToCheck, fields[1]) && isStateSame(stateToCheck, fields[2]);
         }
