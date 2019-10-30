@@ -1,6 +1,6 @@
 package sample;
 
-import sample.enums.FieldState;
+import enums.FieldState;
 
 public class FieldStateHolder {
 

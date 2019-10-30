@@ -1,4 +1,4 @@
-package sample.enums;
+package enums;
 
 public enum FieldState {
     X, O
