@@ -24,7 +24,7 @@ public class EndGamePopUp {
         label.setText(isWinner ? "We got the winner!" : "Draw!");
 
         Button closeButton = new Button("Close");
-        closeButton.setOnAction(e -> popup.close());
+        closeButton.setOnAction(e -> System.exit(0));
         Button playAgainButton = new Button("Play again?");
         playAgainButton.setOnAction(e -> {
             playAgainRunnable.run();

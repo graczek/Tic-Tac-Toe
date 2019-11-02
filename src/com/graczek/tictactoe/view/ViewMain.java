@@ -6,7 +6,7 @@ import javafx.scene.layout.*;
 
 public class ViewMain {
 
-    private static final Image BACKGROUND = new Image("backg.jpg");
+    private static final Image BACKGROUND = new Image("file:resources/backg.jpg");
     public static final int WINDOW_SIZE = 450;
 
     private final Pane grid;
